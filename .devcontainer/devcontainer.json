@@ -1,11 +1,8 @@
 {
 	"name": "Ubuntu",
-	"build": {
-		"dockerfile": "Dockerfile",
-		"args": {
-			"VARIANT": "hirsute"
-		}
-	},
+	"service": "workspace",
+	"workspaceFolder": "/workspace",
+	"dockerComposeFile": "docker-compose.yml",
 	"settings": {},
 	"extensions": [],
 	"remoteUser": "vscode"
