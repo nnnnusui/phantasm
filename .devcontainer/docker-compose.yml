@@ -7,6 +7,8 @@ services:
       args:
         - work_path=/workspace
         - work_user=vscode
+        - version_llvm=14
+        - version_edk2=edk2-stable202202
     command: sleep infinity
     volumes:
       - ..:/workspace/phantasm:cached
