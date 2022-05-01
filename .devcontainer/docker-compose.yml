@@ -2,7 +2,11 @@ version: "3"
 
 services:
   workspace:
-    build: .
+    build:
+      context: .
+      args:
+        - work_path=/workspace
+        - work_user=vscode
     command: sleep infinity
     volumes:
       - ..:/workspace/phantasm:cached
