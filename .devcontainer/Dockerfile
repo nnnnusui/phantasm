@@ -50,3 +50,8 @@ WORKDIR ${workspace}
   RUN cp edk2/Build/Ovmf${edk2_architecture}/DEBUG_${edk2_tool}/FV/OVMF_VARS.fd .
 
 WORKDIR ${workspace}/reference
+# mikanos
+  RUN git clone https://github.com/uchan-nos/mikanos-build.git osbook
+  RUN git clone https://github.com/uchan-nos/mikanos.git mikanos
+  RUN cd mikanos && git checkout osbook_day03c
+  RUN ln -s `pwd`/mikanos/MikanLoaderPkg ${workspace}/edk2/
