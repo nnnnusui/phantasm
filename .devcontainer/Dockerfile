@@ -48,3 +48,5 @@ WORKDIR ${workspace}
     SHELL ["/bin/sh", "-c"]
   RUN cp edk2/Build/Ovmf${edk2_architecture}/DEBUG_${edk2_tool}/FV/OVMF_CODE.fd .
   RUN cp edk2/Build/Ovmf${edk2_architecture}/DEBUG_${edk2_tool}/FV/OVMF_VARS.fd .
+
+WORKDIR ${workspace}/reference
