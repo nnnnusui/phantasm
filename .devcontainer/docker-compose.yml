@@ -14,8 +14,17 @@ services:
     volumes:
       - ..:/workspace/phantasm:cached
       - /tmp/.X11-unix:/tmp/.X11-unix
+      - /usr/lib/wsl:/usr/lib/wsl
     environment:
       - DISPLAY=:0
       - WAYLAND_DISPLAY=$WAYLAND_DISPLAY
       - XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR
       - PULSE_SERVER=$PULSE_SERVER
+      - LD_LIBRARY_PATH=/usr/lib/wsl/lib
+    devices:
+      - /dev/dxg:/dev/dxg
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [ gpu ]
