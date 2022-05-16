@@ -49,6 +49,12 @@ WORKDIR ${workspace}
   RUN cp edk2/Build/Ovmf${edk2_architecture}/DEBUG_${edk2_tool}/FV/OVMF_CODE.fd .
   RUN cp edk2/Build/Ovmf${edk2_architecture}/DEBUG_${edk2_tool}/FV/OVMF_VARS.fd .
 
+WORKDIR ${workspace}/phantasm
+  ARG bootloader_name
+  ENV bootloader_name=${bootloader_name}
+  ENV bootloader_package=${bootloader_name}Pkg/${bootloader_name}Pkg.dsc
+  RUN ln -s `pwd`/bootloader ${workspace}/edk2/${bootloader_name}Pkg
+
 WORKDIR ${workspace}/reference
 # mikanos
   RUN git clone https://github.com/uchan-nos/mikanos-build.git osbook

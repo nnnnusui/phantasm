@@ -9,6 +9,7 @@ services:
         - work_user=vscode
         - version_llvm=14
         - version_edk2=edk2-stable202202
+        - bootloader_name=PhantasmLoader
     command: sleep infinity
     volumes:
       - ..:/workspace/phantasm:cached
