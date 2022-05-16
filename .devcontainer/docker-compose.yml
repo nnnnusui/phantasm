@@ -15,6 +15,7 @@ services:
       - ..:/workspace/phantasm:cached
       - /tmp/.X11-unix:/tmp/.X11-unix
       - /usr/lib/wsl:/usr/lib/wsl
+    privileged: true
     environment:
       - DISPLAY=:0
       - WAYLAND_DISPLAY=$WAYLAND_DISPLAY

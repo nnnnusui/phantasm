@@ -15,6 +15,9 @@ WORKDIR /tmp
     RUN apt install -y iasl
   # required for EDK2/BaseTools
     RUN apt install -y gcc g++ uuid-dev
+  # required for script/run-image
+    RUN apt install -y dosfstools
+    RUN apt install -y qemu-system-x86
 
 # LLVM
   ARG version_llvm
