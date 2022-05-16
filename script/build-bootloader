@@ -1,0 +1,14 @@
+#!/bin/bash
+EDK2=$workspace/edk2
+build_output_dir="$EDK2/Build/${bootloader_name}${edk2_architecture}"
+efi_source="${build_output_dir}/DEBUG_${edk2_tool}/${edk2_architecture}/Loader.efi"
+efi_output="$workspace/Loader.efi"
+
+rm -rf $build_output_dir
+rm $efi_output
+
+cd $EDK2
+source edksetup.sh --reconfig
+build -a ${edk2_architecture} -t ${edk2_tool} -p ${bootloader_package}
+
+cp $efi_source $efi_output

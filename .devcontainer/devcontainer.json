@@ -1,0 +1,9 @@
+{
+	"name": "Ubuntu",
+	"service": "workspace",
+	"workspaceFolder": "/workspace",
+	"dockerComposeFile": "docker-compose.yml",
+	"settings": {},
+	"extensions": [],
+	"remoteUser": "vscode"
+}

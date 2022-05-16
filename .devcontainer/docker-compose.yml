@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  workspace:
+    build:
+      context: .
+      args:
+        - work_path=/workspace
+        - work_user=vscode
+        - version_llvm=14
+        - version_edk2=edk2-stable202202
+        - bootloader_name=PhantasmLoader
+    command: sleep infinity
+    volumes:
+      - ..:/workspace/phantasm:cached
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /usr/lib/wsl:/usr/lib/wsl
+    privileged: true
+    environment:
+      - DISPLAY=:0
+      - WAYLAND_DISPLAY=$WAYLAND_DISPLAY
+      - XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR
+      - PULSE_SERVER=$PULSE_SERVER
+      - LD_LIBRARY_PATH=/usr/lib/wsl/lib
+    devices:
+      - /dev/dxg:/dev/dxg
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [ gpu ]

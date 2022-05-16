@@ -1,0 +1,30 @@
+#!/bin/bash
+TEMP=$workspace/tmp
+IMAGE=$TEMP/disk.img
+MOUNT=$TEMP/mnt
+BOOTLOADER=Loader.efi
+
+cd $workspace
+
+# init
+rm -rf $TEMP
+mkdir -p $TEMP
+
+# create disk.img
+qemu-img create -f raw $IMAGE 200M
+mkfs.fat -n 'PHANTASM OS' -s 2 -f 2 -R 32 -F 32 $IMAGE
+
+mkdir $MOUNT
+sudo mount -o loop $IMAGE $MOUNT
+sudo mkdir -p $MOUNT/EFI/BOOT
+sudo cp $BOOTLOADER $MOUNT/EFI/BOOT/BOOTX64.EFI
+sudo umount $MOUNT
+
+qemu-system-x86_64 \
+    -m 1G \
+    -drive if=pflash,format=raw,readonly,file=OVMF_CODE.fd \
+    -drive if=pflash,format=raw,file=OVMF_VARS.fd \
+    -drive if=ide,index=0,media=disk,format=raw,file=$IMAGE \
+    -device nec-usb-xhci,id=xhci \
+    -device usb-mouse -device usb-kbd \
+    -monitor stdio

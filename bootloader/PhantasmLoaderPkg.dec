@@ -1,0 +1,5 @@
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = PhantasmLoaderPkg
+  PACKAGE_GUID                   = cee87156-6c44-40b3-9815-1de24ae4c36b
+  PACKAGE_VERSION                = 0.1
